@@ -205,7 +205,8 @@ services:
 
   # Comment this if you using any external s3 compatible storage
   plane-minio:
-    image: minio/minio:latest
+    # MinIO saiu do Docker Hub; o upstream trocou por pgsty/silo (bab49bb97, depois da v1.4.2)
+    image: docker.io/pgsty/silo:RELEASE.2026-09-16T00-00-00Z
     command: server /export --console-address ":9090"
     deploy:
       replicas: 1
