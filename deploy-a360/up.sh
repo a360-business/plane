@@ -5,4 +5,5 @@ set -eu
 cd "$(dirname "$0")"
 [ -f plane.env ] || { echo "falta plane.env (copie de ../deployments/cli/community/variables.env e troque os segredos)"; exit 1; }
 RUNTIME="${RUNTIME:-docker}"
-exec "$RUNTIME" compose -p a360-plane --env-file plane.env -f docker-compose.yml "${@:-up -d}"
+[ $# -gt 0 ] || set -- up -d
+exec "$RUNTIME" compose -p a360-plane --env-file plane.env -f docker-compose.yml "$@"
